@@ -4,8 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <!--defer daje pewnosc ze .js wczyta sie po html. 
+    Mozemy odwolac sie do ID-->
+    <script defer src="script.js"></script>
 </head>
 <body>
-    
+    <input id="num1" type="number">
+    <input id="num2" type="number">
+    <button id="btn">dodaj</button>
+    <p>Wynik: <span id="wynik"></span></p>
 </body>
 </html>
