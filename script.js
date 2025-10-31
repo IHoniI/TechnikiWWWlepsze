@@ -37,7 +37,7 @@ function sanitizeAndParse(inputEl) {
   - móc ją (ewentualnie) reużywać w innych miejscach (np. wywołać z klawiatury),
   - terningować testy jednostkowe (można testować funkcję bez symulowania kliknięcia).
 */
-function policzSume(event) {
+function wykonajObl(event) {
   // event jest opcjonalny — kiedy funkcja przypięta jako handler zostanie wywołana,
   // przeglądarka przekaże obiekt zdarzenia. Nie jest on wymagany do samego obliczenia.
   // Można go użyć np. do e.preventDefault() gdyby to był submit formularza.
@@ -55,10 +55,12 @@ function policzSume(event) {
     wynikEl.textContent = "Podaj dwie poprawne liczby";
     return; // kończymy funkcję, nie wykonujemy dodawania
   }
+  let suma;
 
   // Teraz a i b są poprawnymi liczbami (typu number). Operator + wykona dodawanie arytmetyczne.
-  const suma = a + b;
-
+  if(document.getElementById("operation").value == "add"){
+    suma = a + b;
+  }
   // Wyświetlamy wynik: automatycznie zostanie przekonwertowany na string
   wynikEl.textContent = suma;
 }
@@ -68,4 +70,4 @@ function policzSume(event) {
   przekazujemy referencję do nazwanej funkcji policzSume.
   To nie wywołuje funkcji natychmiast — tylko mówi: "wywołaj policzSume kiedy będzie click".
 */
-btn.addEventListener("click", policzSume);
+btn.addEventListener("click", wykonajObl);
