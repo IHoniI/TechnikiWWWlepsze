@@ -7,10 +7,6 @@ const wynikEl = document.getElementById("wynik");
 
 /*
   Funkcja pomocnicza: sanitizeAndParse
-  - przyjmuje element input (HTMLInputElement)
-  - pobiera wartość, obcina białe znaki, zamienia przecinek na kropkę (dla polskich użytkowników)
-  - konwertuje do Number za pomocą Number(...), co wymusza bardziej restrykcyjne sprawdzenie
-    (Number("12abc") => NaN, podczas gdy parseFloat("12abc") => 12).
   - zwraca liczbę (Number) albo NaN jeśli wartość nie jest poprawną liczbą
 */
 function sanitizeAndParse(inputEl) {
@@ -55,14 +51,21 @@ function wykonajObl(event) {
     wynikEl.textContent = "Podaj dwie poprawne liczby";
     return; // kończymy funkcję, nie wykonujemy dodawania
   }
-  let suma;
+  let wynik;
+  const v = document.getElementById("operation").value;
 
   // Teraz a i b są poprawnymi liczbami (typu number). Operator + wykona dodawanie arytmetyczne.
-  if(document.getElementById("operation").value == "add"){
-    suma = a + b;
+  if(v == "add"){
+    wynik = a + b;
+  }else if(v == "sub"){
+    wynik = a - b;
+  }else if(v == "divi"){
+    wynik = a / b;
+  }else if(v == "mul"){
+    wynik = a * b;
   }
   // Wyświetlamy wynik: automatycznie zostanie przekonwertowany na string
-  wynikEl.textContent = suma;
+  wynikEl.textContent = wynik;
 }
 
 /*
