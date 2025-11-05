@@ -23,13 +23,7 @@ function sanitizeAndParse(inputEl) {
   return value; // może być liczbą (np. 3.5) albo NaN
 }
 
-/*
-  Główna, nazwana funkcja obsługująca kliknięcie przycisku.
-  Użycie nazwy funkcji pozwala:
-  - łatwiej odczytywać stack trace w błędach,
-  - móc ją (ewentualnie) reużywać w innych miejscach (np. wywołać z klawiatury),
-  - terningować testy jednostkowe (można testować funkcję bez symulowania kliknięcia).
-*/
+
 function wykonajObl(event) {
   // event jest opcjonalny — kiedy funkcja przypięta jako handler zostanie wywołana,
   // przeglądarka przekaże obiekt zdarzenia. Nie jest on wymagany do samego obliczenia.
@@ -39,19 +33,14 @@ function wykonajObl(event) {
   const a = sanitizeAndParse(num1El);
   const b = sanitizeAndParse(num2El);
 
-  // Walidacja: sprawdzamy, czy którakolwiek z wartości jest NaN (Not a Number)
-  // Number.isNaN jest preferowane zamiast globalnego isNaN, bo działa bardziej przewidywalnie:
-  // Number.isNaN("abc") === false ale Number("abc") === NaN, a Number.isNaN(Number("abc")) === true
+
   if (Number.isNaN(a) || Number.isNaN(b)) {
-    // Jeśli niepoprawne dane — wyświetlamy komunikat i kończymy działanie funkcji.
-    // textContent jest szybsze i bezpieczniejsze niż innerHTML, bo nie parsuje HTML.
     wynikEl.textContent = "Podaj dwie poprawne liczby";
-    return; // kończymy funkcję, nie wykonujemy dodawania
+    return;
   }
   let wynik;
   const v = document.getElementById("operation").value;
 
-  // Teraz a i b są poprawnymi liczbami (typu number). Operator + wykona dodawanie arytmetyczne.
   if(v == "add"){
     wynik = a + b;
   }else if(v == "sub"){
@@ -61,13 +50,9 @@ function wykonajObl(event) {
   }else if(v == "mul"){
     wynik = a * b;
   }
-  // Wyświetlamy wynik: automatycznie zostanie przekonwertowany na string
+
   wynikEl.textContent = wynik;
 }
 
-/*
-  Podpięcie handlera: zamiast podać funkcję anonimową,
-  przekazujemy referencję do nazwanej funkcji policzSume.
-  To nie wywołuje funkcji natychmiast — tylko mówi: "wywołaj policzSume kiedy będzie click".
-*/
+
 btn.addEventListener("click", wykonajObl);
