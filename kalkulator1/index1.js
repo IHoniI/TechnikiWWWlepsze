@@ -1,0 +1,32 @@
+const display = document.getElementById("display");
+
+function appendToDisplay(input) {
+    display.value += input; 
+}
+
+function clearDisplay() {
+    display.value = "";
+}
+
+function deleteLast() {
+    display.value = display.value.slice(0, -1);
+}
+
+function percentage() {
+    try {
+        display.value = eval(display.value) / 100;
+    } catch {
+        display.value = "Error";
+    }
+}
+
+
+function calculate() {
+    try {
+        display.value = eval(display.value);
+    }
+    catch(console){
+        display.value = "Error";
+    }
+
+}
