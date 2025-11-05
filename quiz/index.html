@@ -4,8 +4,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <!--defer daje pewnosc ze .js wczyta sie po html. 
+    Mozemy odwolac sie do ID-->
+    <script defer src="index.js"></script>
+    <style>
+    div{
+    color: rgb(76, 91, 255);
+    text-align: center;
+    display: flex;
+    flex-direction:column;
+    justify-content: center;
+    width: 70%;
+    }
+    .an{
+    }
+    </style>
 </head>
+
 <body>
-    
+    <h1>Quiz</h1>
+    <div>
+        <p>Pytanie: <span id="question"></span></p>
+        <div>
+            <button id="btnA">A: <span id="ansA"></span></button>
+            <button id="btnB">B: <span id="ansB"></span></button>
+            <button id="btnC">C: <span id="ansC"></span></button>
+            <button id="btnD">D: <span id="ansD"></span></button>
+        </div>
+    </div>
 </body>
 </html>
