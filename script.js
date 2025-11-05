@@ -5,10 +5,7 @@ const num2El = document.getElementById("num2");
 const btn = document.getElementById("btn");
 const wynikEl = document.getElementById("wynik");
 
-/*
-  Funkcja pomocnicza: sanitizeAndParse
-  - zwraca liczbę (Number) albo NaN jeśli wartość nie jest poprawną liczbą
-*/
+
 function sanitizeAndParse(inputEl) {
   // pobieramy wartość jako string
   const raw = inputEl.value;
