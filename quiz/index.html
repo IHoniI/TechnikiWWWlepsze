@@ -1,35 +1,26 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <!--defer daje pewnosc ze .js wczyta sie po html. 
-    Mozemy odwolac sie do ID-->
+    <title>Quiz Minimalistyczny</title>
+    <link rel="stylesheet" href="style.css"> 
     <script defer src="index.js"></script>
-    <style>
-    div{
-    color: rgb(76, 91, 255);
-    text-align: center;
-    display: flex;
-    flex-direction:column;
-    justify-content: center;
-    width: 70%;
-    }
-    .an{
-    }
-    </style>
 </head>
 
 <body>
-    <h1>Quiz</h1>
-    <div>
-        <p>Pytanie: <span id="question"></span></p>
-        <div>
-            <button id="btnA">A: <span id="ansA"></span></button>
-            <button id="btnB">B: <span id="ansB"></span></button>
-            <button id="btnC">C: <span id="ansC"></span></button>
-            <button id="btnD">D: <span id="ansD"></span></button>
+    <div class="quiz-container">
+        <h1>Quiz Wiedzy</h1>
+        
+        <div class="question-area">
+            <p>Pytanie: <span id="question">Jaki język programowania jest często używany do stylizowania stron internetowych?</span></p>
+        </div>
+
+        <div class="answers-grid">
+            <button class="answer-btn" id="btnA">A: <span id="ansA">JavaScript</span></button>
+            <button class="answer-btn" id="btnB">B: <span id="ansB">HTML</span></button>
+            <button class="answer-btn" id="btnC">C: <span id="ansC">CSS</span></button>
+            <button class="answer-btn" id="btnD">D: <span id="ansD">Python</span></button>
         </div>
     </div>
 </body>
