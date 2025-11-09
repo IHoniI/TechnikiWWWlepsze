@@ -13,15 +13,22 @@
         <h1>Quiz Wiedzy</h1>
         
         <div class="question-area">
-            <p>Pytanie: <span id="question">Jaki język programowania jest często używany do stylizowania stron internetowych?</span></p>
+            <p>Pytanie: <span id="question"></span></p>
+        </div>
+
+        <div id="progress-info">
+            <p>Pytanie <span id="current-question-num">1</span> z <span id="total-questions">10</span></p>
+            <p>Wynik: <span id="score">0</span></p>
         </div>
 
         <div class="answers-grid">
-            <button class="answer-btn" id="btnA">A: <span id="ansA">JavaScript</span></button>
-            <button class="answer-btn" id="btnB">B: <span id="ansB">HTML</span></button>
-            <button class="answer-btn" id="btnC">C: <span id="ansC">CSS</span></button>
-            <button class="answer-btn" id="btnD">D: <span id="ansD">Python</span></button>
+            <button class="answer-btn" id="btnA">A: <span id="ansA"></span></button>
+            <button class="answer-btn" id="btnB">B: <span id="ansB"></span></button>
+            <button class="answer-btn" id="btnC">C: <span id="ansC"></span></button>
+            <button class="answer-btn" id="btnD">D: <span id="ansD"></span></button>
         </div>
+
+        <button id="next-btn" style="display: none;">Następne Pytanie</button>
     </div>
 </body>
 </html>
