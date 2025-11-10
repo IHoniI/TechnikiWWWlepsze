@@ -126,11 +126,19 @@ let currentIndex = 0;
 let score = 0;
 let answerSelected = false;
 
+function showResults() {
+    document.querySelector('.quiz-container').innerHTML = `
+        <h2>Quiz Zakończony!</h2>
+        <p class="final-score">Twój wynik to ${score} na ${quizData.length} możliwych punktów.</p>
+        <button onclick="location.reload()" class="restart-btn">Graj dalej</button>
+    `;
+}
+
 function loadQuestion(index) {
-    if (index >= quizData.length || index < 0) {
-        questionText.textContent = "Brak pytania o tym indeksie.";
-        return;
-    }
+    if (index >= quizData.length) {
+            showResults();
+            return;
+        }
 
     Object.keys(answerButtons).forEach(letter => {
         answerButtons[letter].disabled = false;
@@ -173,11 +181,7 @@ function checkAnswer(selected){
     nextBtn.disabled = false;
 }
 
-// mozna zmienic na funkcje losujacą pytania
 function nextQuestionIndex(index){
-    if(index>8){
-        return 0;
-    }
     return index+1;
 }
 
