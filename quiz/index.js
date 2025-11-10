@@ -132,6 +132,11 @@ function loadQuestion(index) {
         return;
     }
 
+    Object.keys(answerButtons).forEach(letter => {
+        answerButtons[letter].disabled = false;
+        answerButtons[letter].style.backgroundColor = "";
+    });
+
     answerSelected = false;
     nextBtn.disabled = true;
 
@@ -159,11 +164,15 @@ function nextQuestionIndex(index){
 function checkAnswer(selected){
     const currentQuestion = quizData[currentIndex];
     if(selected == currentQuestion.correctAnswer){
-        alert("BRAWO");
+         answerButtons[selected].style.backgroundColor = "lightgreen";
         score +=1;
     }else{
-        alert("Źle");
+         answerButtons[selected].style.backgroundColor = "salmon";
     }
+    
+    Object.keys(answerButtons).forEach(letter => {
+        answerButtons[letter].disabled = true;
+    });
 
     scoreID.textContent = score;
 

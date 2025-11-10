@@ -86,6 +86,20 @@ h1 {
     box-shadow: none;
 }
 
+.answer-btn:disabled {
+    background-color: #f3f3f3;
+    border-color: #ccc;
+    color: #999;
+    box-shadow: none;
+    transform: none;
+}
+
+.answer-btn:disabled:hover {
+    background-color: #f3f3f3;
+    color: #999;
+    border-color: #ccc;
+}
+
 .next-btn{
     place-self: end;
     padding: 15px 10px;
