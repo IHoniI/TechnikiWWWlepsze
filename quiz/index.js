@@ -120,14 +120,20 @@ const answerButtons = {
 const totalQuestionsSpan = document.getElementById('total-questions'); 
 const currentQuestionNumber = document.getElementById('current-question-num');
 const scoreID = document.getElementById("score");
+const nextBtn = document.getElementById("nextBtn")
+
 let currentIndex = 0;
 let score = 0;
+let answerSelected = false;
 
 function loadQuestion(index) {
     if (index >= quizData.length || index < 0) {
         questionText.textContent = "Brak pytania o tym indeksie.";
         return;
     }
+
+    answerSelected = false;
+    nextBtn.disabled = true;
 
     const currentQuestion = quizData[index];
     
@@ -161,9 +167,14 @@ function checkAnswer(selected){
 
     scoreID.textContent = score;
 
-    currentIndex = nextQuestionIndex(currentIndex);
-    loadQuestion(currentIndex)
+    answerSelected = true;
+    nextBtn.disabled = false;
+}
 
+function nextQuestion() {
+    if (!answerSelected) return;
+    currentIndex++;
+    loadQuestion(currentIndex);
 }
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -174,4 +185,6 @@ document.addEventListener('DOMContentLoaded', () => {
             checkAnswer(letter);
         });
     });
+
+    nextBtn.addEventListener('click', nextQuestion);
 });

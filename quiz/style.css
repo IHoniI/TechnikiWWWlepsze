@@ -85,3 +85,27 @@ h1 {
     transform: translateY(2px); 
     box-shadow: none;
 }
+
+.next-btn{
+    place-self: end;
+    padding: 15px 10px;
+    width: 50%;
+    font-size: 1rem;
+    cursor: pointer;
+    border: 2px solid #4C68FF; 
+    border-radius: 8px;
+    background-color: rgb(0, 0, 0);
+    color: #ffffff; 
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s, transform 0.1s; 
+    outline: none; 
+    text-align: center; 
+}
+
+.next-btn:hover{
+    background-color: #060b1eb9; 
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.next-btn:disabled{
+    display: none;
+}
