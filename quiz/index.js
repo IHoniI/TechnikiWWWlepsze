@@ -153,13 +153,6 @@ function loadQuestion(index) {
     if (currentQuestionNumber) currentQuestionNumber.textContent = index + 1;
 }
 
-// mozna zmienic na funkcje losujacą pytania
-function nextQuestionIndex(index){
-    if(index>8){
-        return 0;
-    }
-    return index+1;
-}
 
 function checkAnswer(selected){
     const currentQuestion = quizData[currentIndex];
@@ -180,9 +173,17 @@ function checkAnswer(selected){
     nextBtn.disabled = false;
 }
 
+// mozna zmienic na funkcje losujacą pytania
+function nextQuestionIndex(index){
+    if(index>8){
+        return 0;
+    }
+    return index+1;
+}
+
 function nextQuestion() {
     if (!answerSelected) return;
-    currentIndex++;
+    currentIndex = nextQuestionIndex(currentIndex);
     loadQuestion(currentIndex);
 }
 
