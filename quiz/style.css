@@ -89,14 +89,14 @@ h1 {
 .answer-btn:disabled {
     background-color: #f3f3f3;
     border-color: #ccc;
-    color: #999;
+    color: #6d6d6d;
     box-shadow: none;
     transform: none;
 }
 
 .answer-btn:disabled:hover {
     background-color: #f3f3f3;
-    color: #999;
+    color: #6d6d6d;
     border-color: #ccc;
 }
 
