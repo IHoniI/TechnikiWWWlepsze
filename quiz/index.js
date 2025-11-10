@@ -109,9 +109,19 @@ const answerFields = {
     D: document.getElementById('ansD')
 };
 
+const answerButtons = {
+    A: document.getElementById('btnA'),
+    B: document.getElementById('btnB'),
+    C: document.getElementById('btnC'),
+    D: document.getElementById('btnD')
+}
+
+
 const totalQuestionsSpan = document.getElementById('total-questions'); 
 const currentQuestionNumber = document.getElementById('current-question-num');
-
+const scoreID = document.getElementById("score");
+let currentIndex = 0;
+let score = 0;
 
 function loadQuestion(index) {
     if (index >= quizData.length || index < 0) {
@@ -132,6 +142,36 @@ function loadQuestion(index) {
     if (currentQuestionNumber) currentQuestionNumber.textContent = index + 1;
 }
 
+// mozna zmienic na funkcje losujacą pytania
+function nextQuestionIndex(index){
+    if(index>8){
+        return 0;
+    }
+    return index+1;
+}
+
+function checkAnswer(selected){
+    const currentQuestion = quizData[currentIndex];
+    if(selected == currentQuestion.correctAnswer){
+        alert("BRAWO");
+        score +=1;
+    }else{
+        alert("Źle");
+    }
+
+    scoreID.textContent = score;
+
+    currentIndex = nextQuestionIndex(currentIndex);
+    loadQuestion(currentIndex)
+
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     loadQuestion(0);
+
+    Object.keys(answerFields).forEach(letter => {
+        answerButtons[letter].addEventListener('click', () => {
+            checkAnswer(letter);
+        });
+    });
 });
