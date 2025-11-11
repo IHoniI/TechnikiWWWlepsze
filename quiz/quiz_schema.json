@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Quiz data",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "properties": {
+      "question": { "type": "string" },
+      "answers": {
+        "type": "object",
+        "properties": {
+          "A": { "type": "string" },
+          "B": { "type": "string" },
+          "C": { "type": "string" },
+          "D": { "type": "string" }
+        },
+        "required": ["A", "B", "C", "D"]
+      },
+      "correctAnswer": { "type": "string" }
+    },
+    "required": ["question", "answers", "correctAnswer"]
+  }
+}

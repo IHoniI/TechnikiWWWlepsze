@@ -1,106 +1,3 @@
-const quizData = [
-    {
-        question: "1. Jaki jest największy ocean na Ziemi?",
-        answers: {
-            A: "Ocean Atlantycki",
-            B: "Ocean Spokojny",
-            C: "Ocean Indyjski",
-            D: "Ocean Arktyczny"
-        },
-        correctAnswer: "B"
-    },
-    {
-        question: "2. Ile planet znajduje się w naszym Układzie Słonecznym?",
-        answers: {
-            A: "7",
-            B: "8",
-            C: "9",
-            D: "10"
-        },
-        correctAnswer: "B"
-    },
-    {
-        question: "3. Jaka jest stolica Japonii?",
-        answers: {
-            A: "Seul",
-            B: "Pekin",
-            C: "Tokio",
-            D: "Bangkok"
-        },
-        correctAnswer: "C"
-    },
-    {
-        question: "4. Kto namalował 'Monę Lisę'?",
-        answers: {
-            A: "Pablo Picasso",
-            B: "Vincent van Gogh",
-            C: "Claude Monet",
-            D: "Leonardo da Vinci"
-        },
-        correctAnswer: "D"
-    },
-    {
-        question: "5. Jaki pierwiastek chemiczny ma symbol 'Fe'?",
-        answers: {
-            A: "Fosfor",
-            B: "Fluor",
-            C: "Żelazo",
-            D: "Złoto"
-        },
-        correctAnswer: "C"
-    },
-    {
-        question: "6. Najwyższy szczyt świata to Mount Everest. Gdzie się znajduje?",
-        answers: {
-            A: "Andy",
-            B: "Alpy",
-            C: "Himalaje",
-            D: "Kordyliery"
-        },
-        correctAnswer: "C"
-    },
-    {
-        question: "7. W którym roku człowiek po raz pierwszy wylądował na Księżycu?",
-        answers: {
-            A: "1965",
-            B: "1969",
-            C: "1971",
-            D: "1975"
-        },
-        correctAnswer: "B"
-    },
-    {
-        question: "8. Walutą jakiego kraju jest Rubel?",
-        answers: {
-            A: "Polska",
-            B: "Rosja",
-            C: "Ukraina",
-            D: "Białoruś"
-        },
-        correctAnswer: "B"
-    },
-    {
-        question: "9. Jak nazywa się największa pustynia na świecie?",
-        answers: {
-            A: "Pustynia Gobi",
-            B: "Pustynia Kalahari",
-            C: "Pustynia Arabska",
-            D: "Sahara"
-        },
-        correctAnswer: "D"
-    },
-    {
-        question: "10. Ile zębów ma dorosły człowiek (wliczając zęby mądrości)?",
-        answers: {
-            A: "28",
-            B: "30",
-            C: "32",
-            D: "36"
-        },
-        correctAnswer: "C"
-    }
-];
-
 const questionText = document.getElementById('question');
 const answerFields = {
     A: document.getElementById('ansA'),
@@ -125,6 +22,23 @@ const nextBtn = document.getElementById("nextBtn")
 let currentIndex = 0;
 let score = 0;
 let answerSelected = false;
+
+let quizData = [];
+
+// wczytywanie danych z pliku
+// funkcja asynchroniczna zwraca Promise
+async function loadQuizData() {
+  try {
+    const response = await fetch('quiz_data.json');
+
+    quizData = await response.json(); // zamiana JSON na obiekt JS
+    console.log("Wczytano pytania:", quizData);
+    loadQuestion(0);
+  } catch (err) {
+    console.error("Nie udało się wczytać quizu:", err);
+  }
+}
+
 
 function showResults() {
     document.querySelector('.quiz-container').innerHTML = `
@@ -192,13 +106,12 @@ function nextQuestion() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    loadQuestion(0);
-
-    Object.keys(answerFields).forEach(letter => {
-        answerButtons[letter].addEventListener('click', () => {
-            checkAnswer(letter);
+    loadQuizData().then(() => {
+        Object.keys(answerButtons).forEach(letter => {
+            answerButtons[letter].addEventListener('click', () => {
+                checkAnswer(letter);
+            });
         });
+        nextBtn.addEventListener('click', nextQuestion);
     });
-
-    nextBtn.addEventListener('click', nextQuestion);
 });
