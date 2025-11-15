@@ -113,5 +113,9 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
         nextBtn.addEventListener('click', nextQuestion);
+    }).catch(err => { 
+        console.log("pojawił się błąd: ", err);
+    }).finally( () => {
+        console.log("Koniec");
     });
 });
