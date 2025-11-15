@@ -105,8 +105,28 @@ function nextQuestion() {
     loadQuestion(currentIndex);
 }
 
+function validateQuizData(data) {
+    return new Promise((resolve, reject) => {
+        if (!Array.isArray(data)) {
+            reject("Plik quizu nie jest tablicą");
+        }
+
+        for (const q of data) {
+            if (!q.question || !q.answers || !q.correctAnswer) {
+                reject("Błędna struktura pytań");
+            }
+        }
+
+        resolve("Dane quizu poprawne");
+    });
+}
+
+
 document.addEventListener('DOMContentLoaded', () => {
-    loadQuizData().then(() => {
+    loadQuizData()
+    .then( () => validateQuizData(quizData))
+    .then( msg => console.log(msg))
+    .then(() => {
         Object.keys(answerButtons).forEach(letter => {
             answerButtons[letter].addEventListener('click', () => {
                 checkAnswer(letter);
